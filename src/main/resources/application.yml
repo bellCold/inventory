@@ -1,0 +1,18 @@
+spring:
+  application:
+    name: inventory
+  datasource:
+    url: jdbc:postgresql://localhost:5432/inventory
+    username: inventory
+    password: inventory
+    hikari:
+      # 락 대기가 무한정 길어지지 않도록 세션 단위 lock_timeout 지정
+      connection-init-sql: SET lock_timeout = '3s'
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  jackson:
+    deserialization:
+      # 수량 1.5 가 1 로 조용히 절삭되는 것을 막는다.
+      accept-float-as-int: false
